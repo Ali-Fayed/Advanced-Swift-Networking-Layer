@@ -17,7 +17,7 @@
 - Modify responses before caching using ResponseCacher.
 - Rename JSON Objects to write clean and readable code.
 - Unit Test Implementation and mocking With ***[OHTTPstubs][OHTTPstubs]***
-- base for MVVM app
+- Base for MVVM app
 
 ## Important Notes:
   
