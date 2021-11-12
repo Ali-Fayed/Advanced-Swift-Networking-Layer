@@ -16,7 +16,7 @@
 - Check for network reachability using NetworkReachabilityManager.
 - Modify responses before caching using ResponseCacher.
 - Rename JSON Objects to write clean and readable code.
-- Unit Test Implementation and mocking With [OHTTPstubs][OHTTPstubs]
+- Unit Test Implementation and mocking With ***[OHTTPstubs][OHTTPstubs]***
 - base for MVVM app
 
 ## Important Notes:
@@ -26,7 +26,7 @@
 pod install
 ```
 [OHTTPstubs]: https://github.com/AliSoftware/OHHTTPStubs
-[Alamofire]: https://cocoapods.org/pods/Alamofire
+[Alamofire]: https://github.com/Alamofire/Alamofire
 [contact]: https://www.linkedin.com/in/ali-fayed-8682aa1a6/
 [fb]: https://www.facebook.com/alifayed26/
 [tw]: https://www.twitter.com/Aliifayed
