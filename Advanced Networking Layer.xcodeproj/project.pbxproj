@@ -12,11 +12,11 @@
 		E7207822641C39F466DE948A /* Pods_Advanced_Networking_Layer_Advanced_Networking_LayerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D9D22A35F190B5B8EE6AEAD /* Pods_Advanced_Networking_Layer_Advanced_Networking_LayerUITests.framework */; };
 		EA02CE35273EC60100C6B49F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE34273EC60100C6B49F /* AppDelegate.swift */; };
 		EA02CE37273EC60100C6B49F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE36273EC60100C6B49F /* SceneDelegate.swift */; };
-		EA02CE39273EC60100C6B49F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE38273EC60100C6B49F /* ViewController.swift */; };
+		EA02CE39273EC60100C6B49F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE38273EC60100C6B49F /* NewsViewController.swift */; };
 		EA02CE3C273EC60100C6B49F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02CE3A273EC60100C6B49F /* Main.storyboard */; };
 		EA02CE41273EC60600C6B49F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA02CE40273EC60600C6B49F /* Assets.xcassets */; };
 		EA02CE44273EC60600C6B49F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA02CE42273EC60600C6B49F /* LaunchScreen.storyboard */; };
-		EA02CE4F273EC60600C6B49F /* Advanced_Networking_LayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE4E273EC60600C6B49F /* Advanced_Networking_LayerTests.swift */; };
+		EA02CE4F273EC60600C6B49F /* NewsUseCaseTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE4E273EC60600C6B49F /* NewsUseCaseTesting.swift */; };
 		EA02CE59273EC60700C6B49F /* Advanced_Networking_LayerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE58273EC60700C6B49F /* Advanced_Networking_LayerUITests.swift */; };
 		EA02CE5B273EC60700C6B49F /* Advanced_Networking_LayerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE5A273EC60700C6B49F /* Advanced_Networking_LayerUITestsLaunchTests.swift */; };
 		EA02CE6C273EC65700C6B49F /* RequestsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE6B273EC65700C6B49F /* RequestsRouter.swift */; };
@@ -24,11 +24,14 @@
 		EA02CE70273EC67000C6B49F /* RequestsInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE6F273EC67000C6B49F /* RequestsInterceptor.swift */; };
 		EA02CE72273EC67D00C6B49F /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE71273EC67D00C6B49F /* NetworkReachability.swift */; };
 		EA02CE74273EC68C00C6B49F /* NetworkingManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE73273EC68C00C6B49F /* NetworkingManger.swift */; };
-		EA02CE76273ECB3000C6B49F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE75273ECB3000C6B49F /* Model.swift */; };
+		EA02CE76273ECB3000C6B49F /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE75273ECB3000C6B49F /* NewsModel.swift */; };
 		EA02CE79273ED23500C6B49F /* StubRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE78273ED23500C6B49F /* StubRequests.swift */; };
 		EA02CE7B273ED25500C6B49F /* JSONMocking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE7A273ED25500C6B49F /* JSONMocking.swift */; };
-		EA02CE7D273ED8E400C6B49F /* UseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE7C273ED8E400C6B49F /* UseCases.swift */; };
-		EA02CE7F273EDACE00C6B49F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE7E273EDACE00C6B49F /* ViewModel.swift */; };
+		EA02CE7D273ED8E400C6B49F /* NewsUseCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE7C273ED8E400C6B49F /* NewsUseCases.swift */; };
+		EA02CE7F273EDACE00C6B49F /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA02CE7E273EDACE00C6B49F /* NewsViewModel.swift */; };
+		EABC9A3127401F9F00DF57E1 /* CommonViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC9A3027401F9F00DF57E1 /* CommonViews.swift */; };
+		EABC9A342740210100DF57E1 /* NewsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC9A332740210100DF57E1 /* NewsProtocols.swift */; };
+		EABC9A36274029C100DF57E1 /* NewsViewModelTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABC9A35274029C100DF57E1 /* NewsViewModelTesting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,13 +63,13 @@
 		EA02CE31273EC60000C6B49F /* Advanced Networking Layer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Advanced Networking Layer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA02CE34273EC60100C6B49F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA02CE36273EC60100C6B49F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EA02CE38273EC60100C6B49F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EA02CE38273EC60100C6B49F /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		EA02CE3B273EC60100C6B49F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EA02CE40273EC60600C6B49F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA02CE43273EC60600C6B49F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA02CE45273EC60600C6B49F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA02CE4A273EC60600C6B49F /* Advanced Networking LayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Advanced Networking LayerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA02CE4E273EC60600C6B49F /* Advanced_Networking_LayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advanced_Networking_LayerTests.swift; sourceTree = "<group>"; };
+		EA02CE4E273EC60600C6B49F /* NewsUseCaseTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsUseCaseTesting.swift; sourceTree = "<group>"; };
 		EA02CE54273EC60700C6B49F /* Advanced Networking LayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Advanced Networking LayerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA02CE58273EC60700C6B49F /* Advanced_Networking_LayerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advanced_Networking_LayerUITests.swift; sourceTree = "<group>"; };
 		EA02CE5A273EC60700C6B49F /* Advanced_Networking_LayerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advanced_Networking_LayerUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -75,12 +78,15 @@
 		EA02CE6F273EC67000C6B49F /* RequestsInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsInterceptor.swift; sourceTree = "<group>"; };
 		EA02CE71273EC67D00C6B49F /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		EA02CE73273EC68C00C6B49F /* NetworkingManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManger.swift; sourceTree = "<group>"; };
-		EA02CE75273ECB3000C6B49F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		EA02CE75273ECB3000C6B49F /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		EA02CE78273ED23500C6B49F /* StubRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRequests.swift; sourceTree = "<group>"; };
 		EA02CE7A273ED25500C6B49F /* JSONMocking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONMocking.swift; sourceTree = "<group>"; };
-		EA02CE7C273ED8E400C6B49F /* UseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCases.swift; sourceTree = "<group>"; };
-		EA02CE7E273EDACE00C6B49F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		EA02CE7C273ED8E400C6B49F /* NewsUseCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsUseCases.swift; sourceTree = "<group>"; };
+		EA02CE7E273EDACE00C6B49F /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		EA9AE5BD19B77E31197D216D /* Pods-Advanced Networking Layer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Advanced Networking Layer.debug.xcconfig"; path = "Target Support Files/Pods-Advanced Networking Layer/Pods-Advanced Networking Layer.debug.xcconfig"; sourceTree = "<group>"; };
+		EABC9A3027401F9F00DF57E1 /* CommonViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViews.swift; sourceTree = "<group>"; };
+		EABC9A332740210100DF57E1 /* NewsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProtocols.swift; sourceTree = "<group>"; };
+		EABC9A35274029C100DF57E1 /* NewsViewModelTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModelTesting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,9 +167,10 @@
 			children = (
 				EA02CE67273EC61400C6B49F /* App Delegate */,
 				EA02CE68273EC62600C6B49F /* Storyboard */,
-				EA02CE69273EC63A00C6B49F /* Assets */,
+				EA02CE77273ECEA000C6B49F /* Modules */,
 				EA02CE6A273EC64300C6B49F /* Networking Layer */,
-				EA02CE77273ECEA000C6B49F /* ViewController */,
+				EA02CE69273EC63A00C6B49F /* Assets */,
+				EABC9A2E27401F8E00DF57E1 /* Helper */,
 				EA02CE45273EC60600C6B49F /* Info.plist */,
 			);
 			path = "Advanced Networking Layer";
@@ -173,7 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				EA02CE80273EE8D600C6B49F /* Mocking and Stubbing */,
-				EA02CE4E273EC60600C6B49F /* Advanced_Networking_LayerTests.swift */,
+				EA02CE4E273EC60600C6B49F /* NewsUseCaseTesting.swift */,
+				EABC9A35274029C100DF57E1 /* NewsViewModelTesting.swift */,
 			);
 			path = "Advanced Networking LayerTests";
 			sourceTree = "<group>";
@@ -225,15 +233,12 @@
 			path = "Networking Layer";
 			sourceTree = "<group>";
 		};
-		EA02CE77273ECEA000C6B49F /* ViewController */ = {
+		EA02CE77273ECEA000C6B49F /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				EA02CE75273ECB3000C6B49F /* Model.swift */,
-				EA02CE7C273ED8E400C6B49F /* UseCases.swift */,
-				EA02CE7E273EDACE00C6B49F /* ViewModel.swift */,
-				EA02CE38273EC60100C6B49F /* ViewController.swift */,
+				EABC9A3727402AB400DF57E1 /* NewsModule */,
 			);
-			path = ViewController;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		EA02CE80273EE8D600C6B49F /* Mocking and Stubbing */ = {
@@ -243,6 +248,34 @@
 				EA02CE7A273ED25500C6B49F /* JSONMocking.swift */,
 			);
 			path = "Mocking and Stubbing";
+			sourceTree = "<group>";
+		};
+		EABC9A2E27401F8E00DF57E1 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				EABC9A2F27401F9400DF57E1 /* CommonViews */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		EABC9A2F27401F9400DF57E1 /* CommonViews */ = {
+			isa = PBXGroup;
+			children = (
+				EABC9A3027401F9F00DF57E1 /* CommonViews.swift */,
+			);
+			path = CommonViews;
+			sourceTree = "<group>";
+		};
+		EABC9A3727402AB400DF57E1 /* NewsModule */ = {
+			isa = PBXGroup;
+			children = (
+				EA02CE75273ECB3000C6B49F /* NewsModel.swift */,
+				EABC9A332740210100DF57E1 /* NewsProtocols.swift */,
+				EA02CE7C273ED8E400C6B49F /* NewsUseCases.swift */,
+				EA02CE7E273EDACE00C6B49F /* NewsViewModel.swift */,
+				EA02CE38273EC60100C6B49F /* NewsViewController.swift */,
+			);
+			path = NewsModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,15 +518,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA02CE6E273EC66200C6B49F /* EventsMonitor.swift in Sources */,
-				EA02CE39273EC60100C6B49F /* ViewController.swift in Sources */,
+				EA02CE39273EC60100C6B49F /* NewsViewController.swift in Sources */,
 				EA02CE35273EC60100C6B49F /* AppDelegate.swift in Sources */,
-				EA02CE7F273EDACE00C6B49F /* ViewModel.swift in Sources */,
+				EA02CE7F273EDACE00C6B49F /* NewsViewModel.swift in Sources */,
 				EA02CE70273EC67000C6B49F /* RequestsInterceptor.swift in Sources */,
 				EA02CE6C273EC65700C6B49F /* RequestsRouter.swift in Sources */,
-				EA02CE76273ECB3000C6B49F /* Model.swift in Sources */,
+				EA02CE76273ECB3000C6B49F /* NewsModel.swift in Sources */,
+				EABC9A3127401F9F00DF57E1 /* CommonViews.swift in Sources */,
 				EA02CE37273EC60100C6B49F /* SceneDelegate.swift in Sources */,
+				EABC9A342740210100DF57E1 /* NewsProtocols.swift in Sources */,
 				EA02CE72273EC67D00C6B49F /* NetworkReachability.swift in Sources */,
-				EA02CE7D273ED8E400C6B49F /* UseCases.swift in Sources */,
+				EA02CE7D273ED8E400C6B49F /* NewsUseCases.swift in Sources */,
 				EA02CE74273EC68C00C6B49F /* NetworkingManger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,8 +537,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EABC9A36274029C100DF57E1 /* NewsViewModelTesting.swift in Sources */,
 				EA02CE7B273ED25500C6B49F /* JSONMocking.swift in Sources */,
-				EA02CE4F273EC60600C6B49F /* Advanced_Networking_LayerTests.swift in Sources */,
+				EA02CE4F273EC60600C6B49F /* NewsUseCaseTesting.swift in Sources */,
 				EA02CE79273ED23500C6B49F /* StubRequests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

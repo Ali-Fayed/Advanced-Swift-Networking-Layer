@@ -5,16 +5,13 @@
 //  Created by Ali Fayed on 12/11/2021.
 //
 
-import Foundation
-import UIKit
-
-class ViewModel {
-    let useCases = UseCases.shared
+class NewsViewModel: NewsViewModelProtocol {
+    let useCases = NewsUseCases.shared
     var newsList = [Post]()
     var newListCount: Int {
         return newsList.count
     }
-    /// fetch data from use case
+    //MARK: - Methods
     func fetchNews() async -> (Result<[Post], Error>) {
         let results = await useCases.fetchNewsToViewModel()
         switch results {
@@ -24,12 +21,5 @@ class ViewModel {
         case .failure(let error):
             return .failure(error)
         }
-    }
-    /// handle error with alert
-    func handleErrorWithAlert(message: String) async -> (UIAlertController) {
-        let alert = await UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let action = await UIAlertAction(title: "OK", style: .default, handler: nil)
-        await alert.addAction(action)
-        return alert
     }
 }

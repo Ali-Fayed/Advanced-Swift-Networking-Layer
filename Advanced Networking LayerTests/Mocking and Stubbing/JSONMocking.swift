@@ -10,7 +10,7 @@ import Foundation
 class JSONMocking {
     static let shared = JSONMocking()
     private init() {}
-    let fakeJSON: [String: Any] = [
+    let fakeNewsJSON: [String: Any] = [
         "hits" : [],
         "nbHits": 27112861,
         "page": 0,

@@ -8,20 +8,17 @@
 import Foundation
 import Alamofire
 
-protocol ViewControllerUseCase {
-    func fetchNewsToViewModel() async -> (Result<Results, Error>)
-}
-
-class UseCases: ViewControllerUseCase {
-    static let shared = UseCases()
+class NewsUseCases: NewsViewUseCaseProtocol {
+    static let shared = NewsUseCases()
     let networingManger = NetworkingManger.shared
     private init () {}
-    func fetchNewsToViewModel () async -> (Result<Results, Error>) {
+    //MARK: - Methods
+    func fetchNewsToViewModel() async -> (Result<Results, Error>) {
         await withUnsafeContinuation({ continuation in
             Task.init {
-                let model = Results.self
-                let router = RequestsRouter.newsList
-                let result = await networingManger.performRequest(model: model, requestRouter: router)
+                let result = await networingManger.performRequest(
+                    model: Results.self,
+                    requestRouter: RequestsRouter.newsList)
                 switch result {
                 case .success(let model):
                     continuation.resume(returning: .success(model))

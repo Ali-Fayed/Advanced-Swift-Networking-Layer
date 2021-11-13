@@ -7,37 +7,37 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class NewsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    private let activityIndicator = UIActivityIndicatorView(style: .medium)
-    private let viewModel = ViewModel()
+    private let spinner = UIActivityIndicatorView()
+    private let viewModel = NewsViewModel()
+    private let commonViews = CommonViews()
+    //MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchViewControllerData()
-        configActivityIndicator()
     }
-    private func configActivityIndicator() {
-        activityIndicator.style = UIActivityIndicatorView.Style.large
-        activityIndicator.center = view.center
-        view.addSubview(activityIndicator)
-    }
+    //MARK: - Methods
     private func fetchViewControllerData () {
         Task.init {
-        activityIndicator.startAnimating()
+        commonViews.showActivityIndicator(spinner: spinner, view: view)
         let result = await viewModel.fetchNews()
             switch result {
             case .success(_):
-                tableView.reloadData()
-                activityIndicator.stopAnimating()
+                    tableView.reloadData()
+                    commonViews.hideActivityIndicator(spinner: spinner)
             case .failure(let error):
-                let alert = await viewModel.handleErrorWithAlert(message: error.localizedDescription)
-                present(alert, animated: true)
+                let alert = await commonViews.showAlert(
+                    title: "Error",
+                    message: error.localizedDescription,
+                    buttonTitle: "Ok")
+                    present(alert, animated: true)
             }
         }
     }
 }
-//MARK: - tableView
-extension ViewController: UITableViewDataSource, UITableViewDelegate {
+     //MARK: - tableView
+extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.newListCount
     }
@@ -49,5 +49,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let url = viewModel.newsList[indexPath.row].postURL
+        commonViews.presentURLinSafari(url: url, viewController: self)
     }
 }
