@@ -9,6 +9,7 @@
 ## Networking Layer Features: 
 
 - Generic API Calls with Model and Router
+- Pass data with new iOS 15 async await
 - Create a custom Session and URLSessionConfiguration.
 - Log network requests and responses using EventsMonitor.
 - Handle authentication and retries using RequestsInterceptor.
