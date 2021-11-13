@@ -13,7 +13,7 @@ class RequestsInterceptor: RequestInterceptor {
   let retryDelay: TimeInterval = 10
 
   func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-      // put your token here if you have an application with authentication the adapt function from alamofire help you attach your token with any request
+      /// put your token here if you have an application with authentication the adapt function from alamofire help you attach your token with any request
       /*
        example :-
        var urlRequest = urlRequest

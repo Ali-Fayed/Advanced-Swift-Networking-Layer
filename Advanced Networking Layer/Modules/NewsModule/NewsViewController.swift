@@ -12,20 +12,20 @@ class NewsViewController: UIViewController {
     private let spinner = UIActivityIndicatorView()
     private let viewModel = NewsViewModel()
     private let commonViews = CommonViews()
-    //MARK: - LifeCycle
+    //MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchViewControllerData()
     }
-    //MARK: - Methods
+    //MARK: - Data Fetching Methods
     private func fetchViewControllerData () {
         Task.init {
-        commonViews.showActivityIndicator(spinner: spinner, view: view)
+        showLoadingIndicator ()
         let result = await viewModel.fetchNews()
-            switch result {
+        switch result {
             case .success(_):
                     tableView.reloadData()
-                    commonViews.hideActivityIndicator(spinner: spinner)
+                    hideLoadingIndicator()
             case .failure(let error):
                 let alert = await commonViews.showAlert(
                     title: "Error",
@@ -35,8 +35,15 @@ class NewsViewController: UIViewController {
             }
         }
     }
+    //MARK: - FirstRequest and Paging Request Loading Indicator
+    func showLoadingIndicator() {
+        commonViews.showLoadingIndicator(page: viewModel.page, spinner: spinner, view: view, tableView: tableView)
+    }
+    func hideLoadingIndicator() {
+        commonViews.hideLoadingIndicator(page: viewModel.page, spinner: spinner, view: view, tableView: tableView)
+    }
 }
-     //MARK: - tableView
+     //MARK: - TableView Methods
 extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.newListCount
@@ -49,7 +56,12 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let url = viewModel.newsList[indexPath.row].postURL
+        guard let url = viewModel.newsList[indexPath.row].postURL else {return}
         commonViews.presentURLinSafari(url: url, viewController: self)
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.loadMoreNews(indexPathRow: indexPath.row) { [weak self] in
+            self?.fetchViewControllerData()
+        }
     }
 }

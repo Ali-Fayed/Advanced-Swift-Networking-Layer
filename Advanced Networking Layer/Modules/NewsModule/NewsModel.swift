@@ -8,14 +8,14 @@
 import Foundation
 
 //MARK: - ResultsModel
-struct Results: Decodable {
+struct NewsResults: Decodable {
     let hits: [Post]
 }
 //MARK: - PostsModel
 struct Post {
-    let postTitle: String
-    let postAuthor: String
-    let postURL: String
+    let postTitle: String?
+    let postAuthor: String?
+    let postURL: String?
 
     enum PostCodingKeys: String, CodingKey {
         case postTitle = "title"
@@ -29,6 +29,6 @@ extension Post: Decodable {
         let container = try decoder.container(keyedBy: PostCodingKeys.self)
         postTitle = try container.decode(String.self, forKey: .postTitle)
         postAuthor = try container.decode(String.self, forKey: .postAuthor)
-        postURL = try container.decode(String.self, forKey: .postURL)
+        postURL = try? container.decode(String.self, forKey: .postURL)
     }
 }

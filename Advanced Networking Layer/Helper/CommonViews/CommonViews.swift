@@ -9,13 +9,13 @@ import UIKit
 import SafariServices
 
 class CommonViews {
-    func showActivityIndicator(spinner: UIActivityIndicatorView, view: UIView) {
+    func showActivityIndicatorSpinner(spinner: UIActivityIndicatorView, view: UIView) {
         spinner.style = UIActivityIndicatorView.Style.large
         spinner.center = view.center
         spinner.startAnimating()
         view.addSubview(spinner)
     }
-    func hideActivityIndicator(spinner: UIActivityIndicatorView) {
+    func hideActivityIndicatorSpinner(spinner: UIActivityIndicatorView) {
         spinner.stopAnimating()
     }
     func showAlert(title: String, message: String, buttonTitle: String) async -> (UIAlertController) {
@@ -27,5 +27,25 @@ class CommonViews {
     func presentURLinSafari(url: String, viewController: UIViewController) {
         let safariVC = SFSafariViewController(url: URL(string: url)!)
         viewController.present(safariVC, animated: true)
+    }
+    func showTableViewFooterSpinner(tableView: UITableView) {
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        tableView.tableFooterView = spinner
+        tableView.tableFooterView?.isHidden = false
+    }
+    func hideTableViewFooterSpinner(tableView: UITableView) {
+        tableView.tableFooterView = nil
+    }
+    func showLoadingIndicator(page: Int, spinner: UIActivityIndicatorView, view: UIView, tableView: UITableView) {
+        page == 0
+        ? showActivityIndicatorSpinner(spinner: spinner, view: view)
+        : showTableViewFooterSpinner(tableView: tableView)
+    }
+    func hideLoadingIndicator(page: Int, spinner: UIActivityIndicatorView, view: UIView, tableView: UITableView) {
+        page == 0
+        ? hideActivityIndicatorSpinner(spinner: spinner)
+        : hideTableViewFooterSpinner(tableView: tableView)
     }
 }

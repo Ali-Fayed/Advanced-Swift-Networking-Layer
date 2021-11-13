@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 enum RequestsRouter {
-    case newsList
+    case newsList(page: Int, query: String, perPage: Int)
     var baseURL: String {
         switch self {
         case .newsList:
@@ -30,9 +30,12 @@ enum RequestsRouter {
     }
     var parameters: [String: String]? {
         switch self {
-        case .newsList:
+        case .newsList(let page, let query, let perPage):
             return [
-                "tags": "front_page"
+                "query": query,
+                "hitsPerPage": "\(perPage)",
+                "tags": "story",
+                "page": "\(page)"
             ]
         }
     }

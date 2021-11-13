@@ -10,7 +10,7 @@ import XCTest
 class NewsUseCaseTesting: XCTestCase {
     // ucUT = Usecase system under test
     var ucUT: NewsUseCases!
-    var expectedResultsResponse: Results?
+    var expectedResultsResponse: NewsResults?
     var viewModel = NewsViewModel()
 
     override func setUp() {
@@ -26,7 +26,7 @@ class NewsUseCaseTesting: XCTestCase {
         let exception = self.expectation(description: "Fetch News Failed")
         StubRequests.shared.stubJSONrespone(jsonObject: fakeJSONObject, header: nil, statusCode: 200, absoluteStringWord: "hn.algolia.com")
         Task.init {
-            let result = await ucUT.fetchNewsToViewModel()
+            let result = await ucUT.fetchNewsToViewModel(page: 0, perPage: 30, query: "")
             switch result {
             case .success(let model):
                 expectedResultsResponse = model

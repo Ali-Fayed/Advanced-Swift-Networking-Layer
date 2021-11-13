@@ -10,7 +10,7 @@ import UIKit
 
 //MARK: - UseCases
 protocol NewsViewUseCaseProtocol {
-    func fetchNewsToViewModel() async -> (Result<Results, Error>)
+    func fetchNewsToViewModel(page: Int, perPage: Int, query: String) async -> (Result<NewsResults, Error>)
 }
 //MARK: - ViewModel
 protocol NewsViewModelProtocol {

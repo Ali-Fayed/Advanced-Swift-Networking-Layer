@@ -13,12 +13,12 @@ class NewsUseCases: NewsViewUseCaseProtocol {
     private let networingManger = NetworkingManger.shared
     private init () {}
     //MARK: - Methods
-    func fetchNewsToViewModel() async -> (Result<Results, Error>) {
+    func fetchNewsToViewModel(page: Int, perPage: Int, query: String) async -> (Result<NewsResults, Error>) {
         await withUnsafeContinuation({ continuation in
             Task.init {
                 let result = await networingManger.performRequest(
-                    model: Results.self,
-                    requestRouter: RequestsRouter.newsList)
+                    model: NewsResults.self,
+                    requestRouter: RequestsRouter.newsList(page: page, query: query, perPage: perPage))
                 switch result {
                 case .success(let model):
                     continuation.resume(returning: .success(model))
