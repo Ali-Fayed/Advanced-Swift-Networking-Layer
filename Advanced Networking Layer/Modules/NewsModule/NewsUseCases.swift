@@ -10,7 +10,7 @@ import Alamofire
 
 class NewsUseCases: NewsViewUseCaseProtocol {
     static let shared = NewsUseCases()
-    let networingManger = NetworkingManger.shared
+    private let networingManger = NetworkingManger.shared
     private init () {}
     //MARK: - Methods
     func fetchNewsToViewModel() async -> (Result<Results, Error>) {

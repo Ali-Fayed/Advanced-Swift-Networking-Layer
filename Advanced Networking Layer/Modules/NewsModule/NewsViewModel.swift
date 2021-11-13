@@ -6,7 +6,7 @@
 //
 
 class NewsViewModel: NewsViewModelProtocol {
-    let useCases = NewsUseCases.shared
+    private let useCases = NewsUseCases.shared
     var newsList = [Post]()
     var newListCount: Int {
         return newsList.count
