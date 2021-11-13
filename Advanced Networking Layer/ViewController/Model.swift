@@ -13,14 +13,17 @@ struct Results: Decodable {
 
 struct Post {
     let postTitle: String
+    let postAuthor: String
 
     enum PostCodingKeys: String, CodingKey {
         case postTitle = "title"
+        case postAuthor = "author"
     }
 }
 extension Post: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: PostCodingKeys.self)
         postTitle = try container.decode(String.self, forKey: .postTitle)
+        postAuthor = try container.decode(String.self, forKey: .postAuthor)
     }
 }
