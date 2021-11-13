@@ -8,17 +8,17 @@
 
 ## Networking Layer Features: 
 
-- Generic API Calls with Model and Router
+- Generic API Calls with only model and router
 - Passing data with new iOS 15 async await
 - Create a custom Session and URLSessionConfiguration.
 - Log network requests and responses using EventsMonitor.
 - Handle authentication and retries using RequestsInterceptor.
-- Configure a Router with URLRequestConvertible.
+- Configure a router with URLRequestConvertible.
 - Check for network reachability using NetworkReachabilityManager.
 - Modify responses before caching using ResponseCacher.
-- Rename JSON Objects to write clean and readable code.
-- Unit Test Implementation and mocking With ***[OHTTPstubs][OHTTPstubs]***
-- Base for MVVM app
+- Rename JSON objects to write clean and readable code.
+- Unit Test implementation and mocking with ***[OHTTPstubs][OHTTPstubs]***
+- Base for Any MVVM App like paging requests implementation and common views
 
 ## Important Notes:
   
