@@ -11,13 +11,16 @@ import UIKit
 class ViewModel {
     let useCases = UseCases.shared
     var newsList = [Post]()
+    var newListCount: Int {
+        return newsList.count
+    }
     /// fetch data from use case
     func fetchNews() async -> (Result<[Post], Error>) {
-        let results = await useCases.fetchNews()
+        let results = await useCases.fetchNewsToViewModel()
         switch results {
         case .success(let model):
-            newsList = model
-            return .success(model)
+            newsList = model.hits
+            return .success(model.hits)
         case .failure(let error):
             return .failure(error)
         }

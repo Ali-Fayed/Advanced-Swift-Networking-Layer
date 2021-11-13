@@ -9,40 +9,54 @@ import XCTest
 @testable import Advanced_Networking_Layer
 
 class Advanced_Networking_LayerTests: XCTestCase {
-    var sut: ViewModel!
-    var expectedResponse: [Post]?
+    // ucUT = Usecase system under test
+    // vmUT = ViewModel system under test
+    var ucUT: UseCases!
+    var vmUT: ViewModel!
+    var expectedResultsResponse: Results?
+    var expectedPostsResponse: [Post]?
+    var viewModel = ViewModel()
 
     override func setUp() {
         super.setUp()
-        sut = ViewModel()
+        ucUT = UseCases.shared
+        vmUT = ViewModel()
     }
     override func tearDown() {
-        sut = nil
+        ucUT = nil
+        vmUT = nil
         super.tearDown()
     }
-    
-    func testViewModel () {
-        /// mocking json object
+    func testUseCase() {
         let jsonObject = JSONMocking.shared.fakeJSON
-        /// expected rsponse that will we get from the server
         let exception = self.expectation(description: "Fetch News Failed")
-        /// OHTTPstubs pod give us a method to track a request or more to test it without an interaction to the server
-        StubRequests.shared.stubJSONrespone(jsonObject: jsonObject, header: nil, statusCode: 200, absoluteStringWord: "github")
+        StubRequests.shared.stubJSONrespone(jsonObject: jsonObject, header: nil, statusCode: 200, absoluteStringWord: "hn.algolia.com")
         Task.init {
-            let result = await ViewModel().fetchNews()
+            let result = await ucUT.fetchNewsToViewModel()
             switch result {
             case .success(let model):
-                expectedResponse = model
+                expectedResultsResponse = model
                 exception.fulfill()
-                XCTAssertFalse(model.isEmpty)
             case .failure(let error):
-                /// make sure expected error output will not nill if there is an error
                 XCTAssertNotNil(error)
             }
         }
-        // timeout for 3 sec
         waitForExpectations(timeout: 3, handler: nil)
-        // make sure the expectedResponse not nil
-        XCTAssertNotNil(expectedResponse)
+        XCTAssertNotNil(expectedResultsResponse)
+    }
+    func testViewModel() {
+        let exception = self.expectation(description: "Passing Data Failed")
+        Task.init {
+            let results = await vmUT.fetchNews()
+            switch results {
+            case .success(let model):
+                expectedPostsResponse = model
+                exception.fulfill()
+            case .failure(let error):
+                XCTAssertNotNil(error)
+            }
+        }
+        waitForExpectations(timeout: 2, handler: nil)
+        XCTAssertNotNil(expectedPostsResponse)
     }
 }

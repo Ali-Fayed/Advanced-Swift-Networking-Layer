@@ -10,7 +10,7 @@ import Alamofire
 
 class NetworkingManger {
     static let shared = NetworkingManger()
-    // af session attach the cached requests, interceptor and event logger to any request we do it
+    /// af session attach the cached requests, interceptor and event logger to any request we do it
     let afSession: Session = {
         let configuration = URLSessionConfiguration.af.default
         configuration.requestCachePolicy = .returnCacheDataElseLoad

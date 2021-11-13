@@ -12,7 +12,12 @@ class NetworkReachability {
   static let shared = NetworkReachability()
   let reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
   let offlineAlertController: UIAlertController = {
-    UIAlertController(title: "No Network", message: "Please connect to network and try again", preferredStyle: .alert)
+    let alert = UIAlertController(title: "No Network", message: "Please connect to network and try again", preferredStyle: .alert)
+      let action = UIAlertAction(title: "Ok", style: .default) { action in
+          NetworkReachability.shared.startNetworkMonitoring()
+      }
+      alert.addAction(action)
+      return alert
   }()
 
   func startNetworkMonitoring() {
@@ -31,12 +36,12 @@ class NetworkReachability {
   }
 
   func showOfflineAlert() {
-    let rootViewController = UIApplication.shared.windows.first?.rootViewController
+      let rootViewController = UIApplication.shared.keyWindow?.rootViewController
     rootViewController?.present(offlineAlertController, animated: true, completion: nil)
   }
 
   func dismissOfflineAlert() {
-    let rootViewController = UIApplication.shared.windows.first?.rootViewController
+    let rootViewController = UIApplication.shared.keyWindow?.rootViewController
     rootViewController?.dismiss(animated: true, completion: nil)
   }
 }

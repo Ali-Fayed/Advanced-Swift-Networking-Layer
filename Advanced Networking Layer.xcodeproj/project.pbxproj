@@ -172,8 +172,8 @@
 		EA02CE4D273EC60600C6B49F /* Advanced Networking LayerTests */ = {
 			isa = PBXGroup;
 			children = (
+				EA02CE80273EE8D600C6B49F /* Mocking and Stubbing */,
 				EA02CE4E273EC60600C6B49F /* Advanced_Networking_LayerTests.swift */,
-				EA02CE80273EE8D600C6B49F /* Mocking */,
 			);
 			path = "Advanced Networking LayerTests";
 			sourceTree = "<group>";
@@ -236,13 +236,13 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		EA02CE80273EE8D600C6B49F /* Mocking */ = {
+		EA02CE80273EE8D600C6B49F /* Mocking and Stubbing */ = {
 			isa = PBXGroup;
 			children = (
 				EA02CE78273ED23500C6B49F /* StubRequests.swift */,
 				EA02CE7A273ED25500C6B49F /* JSONMocking.swift */,
 			);
-			path = Mocking;
+			path = "Mocking and Stubbing";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -9,17 +9,26 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    lazy var viewModel = ViewModel()
+    private let activityIndicator = UIActivityIndicatorView(style: .medium)
+    private let viewModel = ViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchViewData()
+        fetchViewControllerData()
+        configActivityIndicator()
     }
-    func fetchViewData () {
+    private func configActivityIndicator() {
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        activityIndicator.center = view.center
+        view.addSubview(activityIndicator)
+    }
+    private func fetchViewControllerData () {
         Task.init {
+        activityIndicator.startAnimating()
         let result = await viewModel.fetchNews()
             switch result {
             case .success(_):
                 tableView.reloadData()
+                activityIndicator.stopAnimating()
             case .failure(let error):
                 let alert = await viewModel.handleErrorWithAlert(message: error.localizedDescription)
                 present(alert, animated: true)
@@ -30,7 +39,7 @@ class ViewController: UIViewController {
 //MARK: - tableView
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.newsList.count
+        viewModel.newListCount
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
