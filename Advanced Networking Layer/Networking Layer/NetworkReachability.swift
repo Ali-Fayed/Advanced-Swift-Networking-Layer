@@ -36,12 +36,12 @@ class NetworkReachability {
   }
 
   func showOfflineAlert() {
-      let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+      let rootViewController = UIApplication.shared.windows.first?.rootViewController
     rootViewController?.present(offlineAlertController, animated: true, completion: nil)
   }
 
   func dismissOfflineAlert() {
-    let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+      let rootViewController = UIApplication.shared.windows.first?.rootViewController
     rootViewController?.dismiss(animated: true, completion: nil)
   }
 }
