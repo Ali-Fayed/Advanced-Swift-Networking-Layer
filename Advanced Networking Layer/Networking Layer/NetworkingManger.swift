@@ -32,17 +32,19 @@ class NetworkingManger {
     }()
     //MARK: - Main Function
     /// generic function take a model and router to perfrom a networking request
-    func performRequest<T: Decodable>(model: T.Type, requestRouter: URLRequestConvertible, completionHandler: @escaping (Result<T, Error>) -> Void) {
-        self.afSession.request(requestRouter)
-            .validate(statusCode: 200...300)
-            .responseDecodable(of: T.self, completionHandler: { response in
-                switch response.result {
-                case .success(_):
-                    guard let value = response.value else {return}
-                    completionHandler(.success(value))
-                case .failure(let error):
-                    completionHandler(.failure(error))
-                }
-            })
+    func performRequest<T: Decodable>(model: T.Type, requestRouter: URLRequestConvertible) async -> (Result<T, Error>) {
+        await withUnsafeContinuation({ continuation in
+            self.afSession.request(requestRouter)
+                .validate(statusCode: 200...300)
+                .responseDecodable(of: T.self, completionHandler: { response in
+                    switch response.result {
+                    case .success(_):
+                        guard let value = response.value else {return}
+                        continuation.resume(returning: .success(value))
+                    case .failure(let error):
+                        continuation.resume(returning: .failure(error))
+                    }
+                })
+        })
     }
 }

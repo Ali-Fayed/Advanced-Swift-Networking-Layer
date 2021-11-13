@@ -9,33 +9,34 @@ import XCTest
 @testable import Advanced_Networking_Layer
 
 class Advanced_Networking_LayerTests: XCTestCase {
-    var sut: NetworkingManger!
+    var sut: ViewModel!
+    var expectedResponse: [Post]?
 
     override func setUp() {
         super.setUp()
-        sut = NetworkingManger.shared
+        sut = ViewModel()
     }
     override func tearDown() {
         sut = nil
         super.tearDown()
     }
     
-    func testNetworkingManger () {
-        // mocking json object
+    func testViewModel () {
+        /// mocking json object
         let jsonObject = JSONMocking.shared.fakeJSON
-        // expected rsponse that will we get from the server
-        var expectedResponse: GithubUsers?
-        let exception = self.expectation(description: "Fetch Users Failed")
-        // OHTTPstubs pod give us a method to track a request or more to test it without an interaction to the server
-        StubRequests.shared.stubJSONrespone(jsonObject: jsonObject, header: nil, statusCode: 200, absoluteStringWord: "api.github.com")
-        sut.performRequest(model: GithubUsers.self, requestRouter: RequestsRouter.usersList) { result in
+        /// expected rsponse that will we get from the server
+        let exception = self.expectation(description: "Fetch News Failed")
+        /// OHTTPstubs pod give us a method to track a request or more to test it without an interaction to the server
+        StubRequests.shared.stubJSONrespone(jsonObject: jsonObject, header: nil, statusCode: 200, absoluteStringWord: "github")
+        Task.init {
+            let result = await ViewModel().fetchNews()
             switch result {
             case .success(let model):
                 expectedResponse = model
                 exception.fulfill()
-                XCTAssertFalse(model.userName.isEmpty)
+                XCTAssertFalse(model.isEmpty)
             case .failure(let error):
-                // make sure expected error output will not nill if there is an error
+                /// make sure expected error output will not nill if there is an error
                 XCTAssertNotNil(error)
             }
         }

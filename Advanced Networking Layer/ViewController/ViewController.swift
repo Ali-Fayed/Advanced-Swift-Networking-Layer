@@ -15,27 +15,26 @@ class ViewController: UIViewController {
         fetchViewData()
     }
     func fetchViewData () {
-        // fetch users
-        viewModel.fetchUsers { [weak self] in
-            self?.tableView.reloadData()
-        }
-        // handle error with alert
-        if let errorMsg = viewModel.errorString {
-            viewModel.handleErrorWithAlert(message: errorMsg) { [weak self] alert in
-                self?.present(alert, animated: true)
+        Task.init {
+        let result = await viewModel.fetchNews()
+            switch result {
+            case .success(_):
+                tableView.reloadData()
+            case .failure(let error):
+                let alert = await viewModel.handleErrorWithAlert(message: error.localizedDescription)
+                present(alert, animated: true)
             }
         }
     }
 }
-
 //MARK: - tableView
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.usersList.count
+        viewModel.newsList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = viewModel.usersList[indexPath.row].userName.uppercased()
+        cell.textLabel?.text = viewModel.newsList[indexPath.row].postTitle
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

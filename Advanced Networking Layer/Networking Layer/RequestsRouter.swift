@@ -9,35 +9,33 @@ import Foundation
 import Alamofire
 
 enum RequestsRouter {
-  case usersList
-
-  var baseURL: String {
-    switch self {
-    case .usersList:
-      return "https://api.github.com"
+    case newsList
+    var baseURL: String {
+        switch self {
+        case .newsList:
+            return "https://hn.algolia.com"
+        }
     }
-  }
-
-  var path: String {
-    switch self {
-    case .usersList:
-      return "/users"
+    var path: String {
+        switch self {
+        case .newsList:
+            return "/api/v1/search"
+        }
     }
-  }
-
-  var method: HTTPMethod {
-    switch self {
-    case .usersList:
-      return .get
+    var method: HTTPMethod {
+        switch self {
+        case .newsList:
+            return .get
+        }
     }
-  }
-
-  var parameters: [String: String]? {
-    switch self {
-    case .usersList:
-      return nil
+    var parameters: [String: String]? {
+        switch self {
+        case .newsList:
+            return [
+                "tags": "front_page"
+            ]
+        }
     }
-  }
 }
 // MARK: - URLRequestConvertible
 extension RequestsRouter: URLRequestConvertible {

@@ -11,6 +11,6 @@ class JSONMocking {
     static let shared = JSONMocking()
     private init() {}
     let fakeJSON: [String: Any] = [
-        "login": "mojombo"
+        "title": ""
     ]
 }

@@ -9,19 +9,27 @@ import Foundation
 import Alamofire
 
 protocol ViewControllerUseCase {
-    func fetchUsers(completionHandler: @escaping (Result<[GithubUsers], Error>) -> Void)
+    func fetchNews() async -> (Result<[Post], Error>)
 }
+
 class UseCases: ViewControllerUseCase {
     static let shared = UseCases()
+    let networingManger = NetworkingManger.shared
     private init () {}
-    func fetchUsers(completionHandler: @escaping (Result<[GithubUsers], Error>) -> Void) {
-        NetworkingManger.shared.performRequest(model: [GithubUsers].self, requestRouter: RequestsRouter.usersList) { result in
-            switch result {
-            case .success(let model):
-                completionHandler(.success(model))
-            case .failure(let error):
-                completionHandler(.failure(error))
+    
+    func fetchNews() async -> (Result<[Post], Error>) {
+        await withUnsafeContinuation({ continuation in
+            Task.init {
+                let model = Results.self
+                let router = RequestsRouter.newsList
+                let result = await networingManger.performRequest(model: model, requestRouter: router)
+                switch result {
+                case .success(let model):
+                    continuation.resume(returning: .success(model.hits))
+                case .failure(let error):
+                    continuation.resume(returning: .failure(error))
+                }
             }
-        }
+        })
     }
 }

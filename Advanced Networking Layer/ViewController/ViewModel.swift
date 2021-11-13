@@ -9,25 +9,24 @@ import Foundation
 import UIKit
 
 class ViewModel {
-    var errorString: String?
-    var usersList = [GithubUsers]() 
-    // fetch data from use case
-    func fetchUsers(completion: @escaping () -> ()) {
-        UseCases.shared.fetchUsers { [weak self] result in
-            switch result {
-            case .success(let model):
-                self?.usersList = model
-                completion()
-            case .failure(let error):
-                self?.errorString = error.localizedDescription
-            }
+    let useCases = UseCases.shared
+    var newsList = [Post]()
+    /// fetch data from use case
+    func fetchNews() async -> (Result<[Post], Error>) {
+        let results = await useCases.fetchNews()
+        switch results {
+        case .success(let model):
+            newsList = model
+            return .success(model)
+        case .failure(let error):
+            return .failure(error)
         }
     }
-    // handle error with alert
-    func handleErrorWithAlert(message: String, completion: @escaping (UIAlertController) -> ()) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(action)
-        completion(alert)
+    /// handle error with alert
+    func handleErrorWithAlert(message: String) async -> (UIAlertController) {
+        let alert = await UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let action = await UIAlertAction(title: "OK", style: .default, handler: nil)
+        await alert.addAction(action)
+        return alert
     }
 }

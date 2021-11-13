@@ -7,16 +7,20 @@
 
 import Foundation
 
-struct GithubUsers {
-    let userName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case userName = "login"
+struct Results: Decodable {
+    let hits: [Post]
+}
+
+struct Post {
+    let postTitle: String
+
+    enum PostCodingKeys: String, CodingKey {
+        case postTitle = "title"
     }
 }
-extension GithubUsers: Decodable {
+extension Post: Decodable {
     init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        userName = try container.decode(String.self, forKey: .userName)
+        let container = try decoder.container(keyedBy: PostCodingKeys.self)
+        postTitle = try container.decode(String.self, forKey: .postTitle)
     }
 }
